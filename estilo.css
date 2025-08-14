@@ -366,17 +366,21 @@ h2 {
     background-color: white;
 
     transition: max-height .4s;
-    padding-right: 1rem;
+   padding: 0 1 0 1;
+
 
     
 
 }
-
+.header-menu li{
+    padding: .25rem;
+}
 .header-menu a{
     display: block;
     padding: 0;
+    padding-right: .5rem;
     
-    padding: 1rem .5rem 1rem 0;
+    padding: 1.22rem  0;
     text-transform: uppercase;
     overflow: hidden;
    
@@ -384,10 +388,17 @@ h2 {
 .header-menu a:hover{
     background-color:color-mix(in srgb, var(--dark) 60%, white 20%) ;
 }
-.menu-btn:checked ~ .header-menu{ /*eu pego todo elemente que esta apos ele*/
+
+.menu-btn:checked ~ .header-menu{ /*eu pego todo elemente que esta apos ele, se fosse '+' seria imidiatamente, mas nao é pq tem um label no meio*/
     max-height: 100vh;
     
 
+}
+
+
+.header-menu:focus-within {
+     /*quando tiver com foco com o  teclado ele abre tbm*/
+    max-height: 100vh;
 }
 
 @media screen and (min-width: 45em){
@@ -407,6 +418,15 @@ h2 {
     position: relative;
     cursor: pointer;
     /*user-select: none;/*impede que o usuario interaja com ele*/
+    width: 40px;  
+    height: 40px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+    
+    
 }
 .nav-icon{
     background-color: #333;
@@ -422,10 +442,25 @@ h2 {
     height: 2px;
     width: 24px;
     position: absolute;
+    transition: transform .2s;
 }
 .nav-icon::after{
     transform: translateY(8px);
+
+    
 }
 .nav-icon::before{
     transform: translateY(-8px);
+}
+.menu-btn:checked + .menu-icon .nav-icon::before{
+    transform: rotate(-45deg);
+}
+.menu-btn:checked + .menu-icon .nav-icon::after{
+    transform: rotate(45deg);
+}
+.menu-btn:checked + .menu-icon .nav-icon {
+    background-color: transparent;
+}
+.menu-btn:focus-visible + .menu-icon{ /*focus-visible somente para via teclado*/
+    outline: 1px solid black;
 }
